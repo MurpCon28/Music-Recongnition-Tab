@@ -28,17 +28,7 @@ if (navigator.mediaDevices.getUserMedia) {
 
     visualize(stream);
 
-    record.onclick = function() {
-      mediaRecorder.start();
-      console.log(mediaRecorder.state);
-      console.log("recorder started");
-      record.style.background = "red";
-
-      stop.disabled = false;
-      record.disabled = true;
-    }
-
-    stop.onclick = function() {
+    let stopRecording = function() {
       mediaRecorder.stop();
       console.log(mediaRecorder.state);
       console.log("recorder stopped");
@@ -48,7 +38,25 @@ if (navigator.mediaDevices.getUserMedia) {
 
       stop.disabled = true;
       record.disabled = false;
+
+      // get recorded file
+      // upload recorded file to web application
+      // display response
     }
+
+    record.onclick = function() {
+      mediaRecorder.start();
+      console.log(mediaRecorder.state);
+      console.log("recorder started");
+      record.style.background = "red";
+
+      stop.disabled = false;
+      record.disabled = true;
+
+      setTimeout(stopRecording, 20 * 1000);
+    }
+
+    stop.onclick = stopRecording;
 
     mediaRecorder.onstop = function(e) {
       console.log("data available after MediaRecorder.stop() called.");
