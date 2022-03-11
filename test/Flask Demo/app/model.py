@@ -7,21 +7,21 @@ from scipy.io import wavfile
 import pylab
 import matplotlib.mlab as ml
 from scipy.fftpack import fft
-import pyaudio
+#import pyaudio
 import struct
 import pickle
 from sys import byteorder
 from array import array
 from struct import pack
 
-%matplotlib tk
+#%matplotlib tk
 
-with open("hashtable.pkl", "rb") as input_file:
+with open("app/hashtable.pkl", "rb") as input_file:
     hashtable = pickle.load( input_file)
-with open("songid.pkl", "rb") as input_file:
+with open("app/songid.pkl", "rb") as input_file:
     song_dict = pickle.load(input_file)
 
-file = open('songs.txt','r')#list of song files ----> use      ls >allsongs
+file = open('app/songs.txt','r')#list of song files ----> use      ls >allsongs
 allsongs = file.readlines()
 allsongs = [a[:-1] for a in allsongs]
 numOfSongs = len(allsongs)
@@ -181,10 +181,31 @@ class song:
         return matched_target_zone.index(max(matched_target_zone))
 
 chunk = 4096
-format = pyaudio.paInt16
+#format = pyaudio.paInt16
 channels = 1
 rate = 44100
 record_seconds = 20
 NORMALIZE_MINUS_ONE_dB = 10 ** (-1.0 / 20)
 FRAME_MAX_VALUE = 2 ** 15 - 1
 wave_output_file = "output.wav"
+
+#read file contents
+#write file contents to output.wav
+total = song("app/output.wav", 0)
+total.find_key()
+total.cal_address()
+idx = total.search()
+
+print('Predicted Song {}'.format(allsongs[idx]))
+
+remove_wav = (allsongs[idx]).replace('.wav', '')
+predicted_song = remove_wav.replace(' ', '%20')
+print(predicted_song)
+
+youtube_link = "https://www.youtube.com/results?search_query="
+youtube_song_link = "".join((youtube_link, predicted_song))
+print("Youtube Lesson - " + youtube_song_link +"%20guitar%20lesson")
+
+guitar_tab_link = "https://www.ultimate-guitar.com/search.php?search_type=title&value="
+guitar_tab_song_link = "".join((guitar_tab_link, predicted_song))
+print("Guitar Tab - " + guitar_tab_song_link)

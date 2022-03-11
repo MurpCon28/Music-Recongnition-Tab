@@ -1,4 +1,6 @@
 //https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
+//https://javascript.tutorialink.com/send-wav-file-from-js-to-flask/
+//https://blog.addpipe.com/using-recorder-js-to-capture-wav-audio-in-your-html5-web-site/
 
 const record = document.querySelector('.record');
 const stop = document.querySelector('.stop');
