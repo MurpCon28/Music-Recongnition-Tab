@@ -159,7 +159,7 @@ class song:
     def search(self):
         #search
         matched_couples = []
-        for key in total.addresses:
+        for key in self.addresses:
             if key in hashtable.keys():
                 matched_couples.append(hashtable[key])
         
@@ -180,32 +180,39 @@ class song:
         print('matched target zone ',matched_target_zone)
         return matched_target_zone.index(max(matched_target_zone))
 
-chunk = 4096
-#format = pyaudio.paInt16
-channels = 1
-rate = 44100
-record_seconds = 20
-NORMALIZE_MINUS_ONE_dB = 10 ** (-1.0 / 20)
-FRAME_MAX_VALUE = 2 ** 15 - 1
-wave_output_file = "output.wav"
+def predict(filepath):
+    chunk = 4096
+    #format = pyaudio.paInt16
+    channels = 1
+    rate = 44100
+    record_seconds = 20
+    NORMALIZE_MINUS_ONE_dB = 10 ** (-1.0 / 20)
+    FRAME_MAX_VALUE = 2 ** 15 - 1
+    # wave_output_file = "output.wav"
 
-#read file contents
-#write file contents to output.wav
-total = song("app/output.wav", 0)
-total.find_key()
-total.cal_address()
-idx = total.search()
+    #read file contents
+    #write file contents to output.wav
+    total = song(filepath, 0)
+    total.find_key()
+    total.cal_address()
+    idx = total.search()
 
-print('Predicted Song {}'.format(allsongs[idx]))
+    #print('Predicted Song {}'.format(allsongs[idx]))
 
-remove_wav = (allsongs[idx]).replace('.wav', '')
-predicted_song = remove_wav.replace(' ', '%20')
-print(predicted_song)
+    remove_wav = (allsongs[idx]).replace('.wav', '')
+    predicted_song = remove_wav.replace(' ', '%20')
+    # print(predicted_song)
 
-youtube_link = "https://www.youtube.com/results?search_query="
-youtube_song_link = "".join((youtube_link, predicted_song))
-print("Youtube Lesson - " + youtube_song_link +"%20guitar%20lesson")
+    youtube_link = "https://www.youtube.com/results?search_query="
+    youtube_song_link = "".join((youtube_link, predicted_song, "%20guitar%20lesson"))
+    # print("Youtube Lesson - " + youtube_song_link +"%20guitar%20lesson")
 
-guitar_tab_link = "https://www.ultimate-guitar.com/search.php?search_type=title&value="
-guitar_tab_song_link = "".join((guitar_tab_link, predicted_song))
-print("Guitar Tab - " + guitar_tab_song_link)
+    guitar_tab_link = "https://www.ultimate-guitar.com/search.php?search_type=title&value="
+    guitar_tab_song_link = "".join((guitar_tab_link, predicted_song))
+    # print("Guitar Tab - " + guitar_tab_song_link)
+
+    return {
+        "prediction" : remove_wav,
+        "youtube" : youtube_song_link,
+        "guitar" : guitar_tab_song_link
+    }

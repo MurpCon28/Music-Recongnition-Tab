@@ -1,10 +1,49 @@
+import os
 from app import app
-from flask import render_template
+from flask import render_template, jsonify, request, redirect, url_for, flash
+from werkzeug.utils import secure_filename
 
 # from app import imports
 # from app import pickleFileCode
 # from app import songFileCode
 from app import model
+
+UPLOAD_FOLDER = 'uploads'
+ALLOWED_EXTENSIONS = {'wav'}
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            print("Upload filename = " + file.filename)
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(UPLOAD_FOLDER, filename)
+            file.save(filepath)
+
+            prediction = model.predict()
+            return jsonify(prediction)
+            
+            # return redirect(url_for('download_file', name=filename))
+            # return jsonify({
+            #     "filename" : filename
+            # })
+    return render_template('upload.html')
+
+
 # import song
 
 # load pickle file
@@ -13,6 +52,11 @@ from app import model
 @app.route('/')
 def hello_world():
     return render_template('index.html')
+
+@app.route('/predict')
+def predict():
+    prediction = model.predict()
+    return jsonify(prediction)
 
 # file upload
 # @app.route('/upload')

@@ -41,7 +41,7 @@ if (navigator.mediaDevices.getUserMedia) {
       stop.disabled = true;
       record.disabled = false;
 
-      record.exportWAV(createDownloadLink);
+      record.exportWAV(mediaRecorder);
 
       // get recorded file
       // upload recorded file to web application
@@ -110,6 +110,25 @@ if (navigator.mediaDevices.getUserMedia) {
         }
       }
     }
+
+  //   function mediaRecorder(blob) {
+  //     var url = URL.createObjectURL(blob);
+  //     var au = document.createElement('audio');
+  //     var li = document.createElement('li');
+  //     var link = document.createElement('a');
+  //     //add controls to the <audio> element 
+  //     au.controls = true;
+  //     au.src = url;
+  //     //link the a element to the blob 
+  //     link.href = url;
+  //     link.download = new Date().toISOString() + '.wav';
+  //     link.innerHTML = link.download;
+  //     //add the new audio and a elements to the li element 
+  //     li.appendChild(au);
+  //     li.appendChild(link);
+  //     //add the li element to the ordered list 
+  //     recordingsList.appendChild(li);
+  // }
 
     mediaRecorder.ondataavailable = function(e) {
       chunks.push(e.data);
