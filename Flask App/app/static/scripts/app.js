@@ -41,7 +41,9 @@ if (navigator.mediaDevices.getUserMedia) {
       stop.disabled = true;
       record.disabled = false;
 
-      record.exportWAV(mediaRecorder);
+      //record.exportWAV(createDownloadLink);
+      // createDownloadLink();
+      // createAudioElement();
 
       // get recorded file
       // upload recorded file to web application
@@ -65,20 +67,24 @@ if (navigator.mediaDevices.getUserMedia) {
     mediaRecorder.onstop = function(e) {
       console.log("data available after MediaRecorder.stop() called.");
 
-      const clipName = prompt('Enter a name for your sound clip?','output');
+      const clipName = prompt('Enter a name for your sound clip?','Untitled');
 
       const clipContainer = document.createElement('article');
       const clipLabel = document.createElement('p');
       const audio = document.createElement('audio');
       const deleteButton = document.createElement('button');
+      const downloadLink = document.createElement('link');
 
       clipContainer.classList.add('clip');
       audio.setAttribute('controls', '');
       deleteButton.textContent = 'Delete';
       deleteButton.className = 'delete';
 
+      downloadLink.textContent = 'Download';
+      downloadLink.className = 'download';
+
       if(clipName === null) {
-        clipLabel.textContent = 'output';
+        clipLabel.textContent = 'Untitled';
       } else {
         clipLabel.textContent = clipName;
       }
@@ -86,6 +92,7 @@ if (navigator.mediaDevices.getUserMedia) {
       clipContainer.appendChild(audio);
       clipContainer.appendChild(clipLabel);
       clipContainer.appendChild(deleteButton);
+      clipContainer.appendChild(downloadLink);
       soundClips.appendChild(clipContainer);
 
       audio.controls = true;
@@ -93,7 +100,27 @@ if (navigator.mediaDevices.getUserMedia) {
       chunks = [];
       const audioURL = window.URL.createObjectURL(blob);
       audio.src = audioURL;
+      // createAudioElement(URL.createObjectURL(blob));
       console.log("recorder stopped");
+
+      downloadLink.onclick = function(e) {
+        var url = URL.createObjectURL(blob);
+        var au = document.createElement('audio');
+        var li = document.createElement('li');
+        var link = document.createElement('a');
+        //add controls to the <audio> element 
+        au.controls = true;
+        au.src = url;
+        //link the a element to the blob 
+        link.href = url;
+        link.download = new Date().toISOString() + '.wav';
+        link.innerHTML = link.download;
+        //add the new audio and a elements to the li element 
+        li.appendChild(au);
+        li.appendChild(link);
+        //add the li element to the ordered list 
+        recordingsList.appendChild(li);
+      }
 
       deleteButton.onclick = function(e) {
         let evtTgt = e.target;
@@ -111,7 +138,41 @@ if (navigator.mediaDevices.getUserMedia) {
       }
     }
 
-  //   function mediaRecorder(blob) {
+    // function createDownloadLink() {
+    //   recorder && recorder.exportWAV(function(blob) {
+    //     var url = URL.createObjectURL(blob);
+    //     var li = document.createElement('li');
+    //     var au = document.createElement('audio');
+    //     var hf = document.createElement('a');
+        
+    //     au.controls = true;
+    //     au.src = url;
+    //     hf.href = url;
+    //     hf.download = new Date().toISOString() + '.wav';
+    //     hf.innerHTML = hf.download;
+    //     li.appendChild(au);
+    //     li.appendChild(hf);
+    //     recordingslist.appendChild(li);
+    //   });
+    // }
+
+  //   function createAudioElement(blobUrl) {
+  //     const downloadEl = document.createElement('a');
+  //     downloadEl.style = 'display: block';
+  //     downloadEl.innerHTML = 'download';
+  //     downloadEl.download = 'audio.webm';
+  //     downloadEl.href = blobUrl;
+  //     const audioEl = document.createElement('audio');
+  //     audioEl.controls = true;
+  //     const sourceEl = document.createElement('source');
+  //     sourceEl.src = blobUrl;
+  //     sourceEl.type = 'audio/webm';
+  //     audioEl.appendChild(sourceEl);
+  //     document.body.appendChild(audioEl);
+  //     document.body.appendChild(downloadEl);
+  // }
+
+  //   function createDownloadLink(blob) {
   //     var url = URL.createObjectURL(blob);
   //     var au = document.createElement('audio');
   //     var li = document.createElement('li');
