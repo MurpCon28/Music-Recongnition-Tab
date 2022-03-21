@@ -7,19 +7,35 @@
     <!-- <link href="styles/app.css" rel="stylesheet" type="text/css"> -->
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/app.css') }}">
   </head>
-  <body>
-    <div class="topnav">
-      <a href="/">Home</a>
-      <a class="active" href="/upload">Upload</a>
-    </div>
-    <div class="wrapper">
-      <header>
-        <h1>Upload File</h1>
-      </header>
-      <br>
-      <form method=post enctype=multipart/form-data>
-        <input class="file" type=file name=file>
-        <input class="upload" type=submit value=Upload>
-      </form>
-    </div>
-  </body>
+    <body>
+      <div class="topnav">
+        <a href="/">Home</a>
+        <a class="active" href="/upload">Upload</a>
+      </div>
+      <div class="wrapper">
+        <header>
+          <h1>Upload File</h1>
+        </header>
+        <br>
+        <form method=post enctype=multipart/form-data class="form_wrapper">
+          <input class="file" type=file name=file>
+          <input class="upload" type=submit value=Upload id="filepath"> 
+          <!-- <input class="upload" type=submit value=Upload id="uploadButton">  -->
+          <!-- <input class="upload" type=submit value=Upload onclick="predict();"> -->
+        </form>
+        <br>
+        <div class="results">
+          <h3>Results</h3>
+          <p id="results"></p>
+        </div>
+
+        <!-- {% if QTc_result %}
+          <h3>Results</h3>
+          <p>{{prediction}} </p>
+        {% endif %} -->
+
+      </div>
+      <script type="text/javascript" src="{{url_for('static', filename='scripts/app.js')}}"></script>
+      <script src="/static/jquery-3.1.1.min.js"></script>
+    </body>
+  </html>

@@ -268,3 +268,36 @@ window.onresize = function() {
 }
 
 window.onresize();
+
+// $(document).ready(function(){
+//   $('.form_wrapper').on('click', '.upload', function(){
+//      var data = $('.file').val();
+//      $.ajax({
+//       url: "/upload",
+//      type: "get",
+//      data: {text:data},
+//      success: function(response) {
+//        $(".results").html(response.predict);
+//       }
+//    });
+//   });
+// });
+
+// $(document).ready(function() {
+//   $('form').on('submit', function(event) {
+//     $.ajax({
+//        data : {
+//           // Prediction : $('remove_wav').val(),
+//           // YouTube: $('youtube_song_link').val(),
+//           // Guitar : $('guitar_tab_song_link').val(),
+//           FileName : $('filepath').val(),
+//               },
+//           type : 'POST',
+//           url : '/upload'
+//          })
+//      .done(function(data) {
+//        $('results').text(data.output).show();
+//    });
+//    event.preventDefault();
+//    });
+// });

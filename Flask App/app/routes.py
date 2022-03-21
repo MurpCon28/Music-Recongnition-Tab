@@ -34,8 +34,12 @@ def upload_file():
             filepath = os.path.join(UPLOAD_FOLDER, filename)
             file.save(filepath)
 
-            prediction = model.predict()
+            prediction = model.predict(filepath)
+            # prediction = model.predict()
             return jsonify(prediction)
+
+            #return render_template('upload.html', prediction=prediction)
+        #return render_template('upload.html')
             
             # return redirect(url_for('download_file', name=filename))
             # return jsonify({
