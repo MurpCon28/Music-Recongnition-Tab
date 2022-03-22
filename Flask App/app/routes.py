@@ -47,6 +47,33 @@ def upload_file():
             # })
     return render_template('upload.html')
 
+@app.route('/upload_blob', methods=['POST'])
+def upload_blob():
+    print("request")
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            return jsonify({"error" : "No file part"})
+
+        file = request.files['file']
+        print("file")
+        # If the user does not select a file, the browser submits an
+        # empty file without a filename.
+        if file.filename == '':
+            return jsonify({"error" : "No selected file"})
+
+        if file and not allowed_file(file.filename):
+            return jsonify({"error" : "No selected file"})
+
+        print("Upload filename = " + file.filename)
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(UPLOAD_FOLDER, filename)
+        file.save(filepath)
+
+        prediction = model.predict(filepath)
+        # prediction = model.predict()
+        return jsonify(prediction)
+
 
 # import song
 

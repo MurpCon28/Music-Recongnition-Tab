@@ -1,6 +1,4 @@
-//https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
-//https://javascript.tutorialink.com/send-wav-file-from-js-to-flask/
-//https://blog.addpipe.com/using-recorder-js-to-capture-wav-audio-in-your-html5-web-site/
+// set up basic variables for app
 
 const record = document.querySelector('.record');
 const stop = document.querySelector('.stop');
@@ -30,7 +28,17 @@ if (navigator.mediaDevices.getUserMedia) {
 
     visualize(stream);
 
-    let stopRecording = function() {
+    record.onclick = function() {
+      mediaRecorder.start();
+      console.log(mediaRecorder.state);
+      console.log("recorder started");
+      record.style.background = "red";
+
+      stop.disabled = false;
+      record.disabled = true;
+    }
+
+    stop.onclick = function() {
       mediaRecorder.stop();
       console.log(mediaRecorder.state);
       console.log("recorder stopped");
@@ -40,156 +48,71 @@ if (navigator.mediaDevices.getUserMedia) {
 
       stop.disabled = true;
       record.disabled = false;
-
-      //record.exportWAV(createDownloadLink);
-      // createDownloadLink();
-      // createAudioElement();
-
-      // get recorded file
-      // upload recorded file to web application
-      // display response
     }
-
-    record.onclick = function() {
-      mediaRecorder.start();
-      console.log(mediaRecorder.state);
-      console.log("recorder started");
-      record.style.background = "red";
-
-      stop.disabled = false;
-      record.disabled = true;
-
-      setTimeout(stopRecording, 20 * 1000);
-    }
-
-    stop.onclick = stopRecording;
 
     mediaRecorder.onstop = function(e) {
       console.log("data available after MediaRecorder.stop() called.");
 
-      const clipName = prompt('Enter a name for your sound clip?','Untitled');
+      // const clipName = prompt('Enter a name for your sound clip?','My unnamed clip');
 
-      const clipContainer = document.createElement('article');
-      const clipLabel = document.createElement('p');
-      const audio = document.createElement('audio');
-      const deleteButton = document.createElement('button');
-      const downloadLink = document.createElement('link');
+      // const clipContainer = document.createElement('article');
+      // const clipLabel = document.createElement('p');
+      // const audio = document.createElement('audio');
+      // const deleteButton = document.createElement('button');
 
-      clipContainer.classList.add('clip');
-      audio.setAttribute('controls', '');
-      deleteButton.textContent = 'Delete';
-      deleteButton.className = 'delete';
+      // clipContainer.classList.add('clip');
+      // audio.setAttribute('controls', '');
+      // deleteButton.textContent = 'Delete';
+      // deleteButton.className = 'delete';
 
-      downloadLink.textContent = 'Download';
-      downloadLink.className = 'download';
+      // if(clipName === null) {
+      //   clipLabel.textContent = 'My unnamed clip';
+      // } else {
+      //   clipLabel.textContent = clipName;
+      // }
 
-      if(clipName === null) {
-        clipLabel.textContent = 'Untitled';
-      } else {
-        clipLabel.textContent = clipName;
-      }
+      // clipContainer.appendChild(audio);
+      // clipContainer.appendChild(clipLabel);
+      // clipContainer.appendChild(deleteButton);
+      // soundClips.appendChild(clipContainer);
 
-      clipContainer.appendChild(audio);
-      clipContainer.appendChild(clipLabel);
-      clipContainer.appendChild(deleteButton);
-      clipContainer.appendChild(downloadLink);
-      soundClips.appendChild(clipContainer);
-
-      audio.controls = true;
-      const blob = new Blob(chunks, { 'type' : 'audio/wav; codecs=opus' });
+      // audio.controls = true;
+      const blob = new Blob(chunks, { 'type' : 'audio/wav' });
       chunks = [];
-      const audioURL = window.URL.createObjectURL(blob);
-      audio.src = audioURL;
-      // createAudioElement(URL.createObjectURL(blob));
+      // const audioURL = window.URL.createObjectURL(blob);
+      // audio.src = audioURL;
       console.log("recorder stopped");
 
-      downloadLink.onclick = function(e) {
-        var url = URL.createObjectURL(blob);
-        var au = document.createElement('audio');
-        var li = document.createElement('li');
-        var link = document.createElement('a');
-        //add controls to the <audio> element 
-        au.controls = true;
-        au.src = url;
-        //link the a element to the blob 
-        link.href = url;
-        link.download = new Date().toISOString() + '.wav';
-        link.innerHTML = link.download;
-        //add the new audio and a elements to the li element 
-        li.appendChild(au);
-        li.appendChild(link);
-        //add the li element to the ordered list 
-        recordingsList.appendChild(li);
-      }
+      // UPLOAD BLOB
 
-      deleteButton.onclick = function(e) {
-        let evtTgt = e.target;
-        evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
-      }
+      const audioUrl = URL.createObjectURL(blob);
+      var data = new FormData()
+      data.append('file', blob , 'audio_file.wav')
 
-      clipLabel.onclick = function() {
-        const existingName = clipLabel.textContent;
-        const newClipName = prompt('Enter a new name for your sound clip?');
-        if(newClipName === null) {
-          clipLabel.textContent = existingName;
-        } else {
-          clipLabel.textContent = newClipName;
-        }
-      }
+      fetch('http://127.0.0.1:5000/upload_blob', {
+          method: 'POST',
+          body: data
+
+      }).then(response => response.json()
+      ).then(json => {
+          console.log(json)
+      });
+
+    //   deleteButton.onclick = function(e) {
+    //     let evtTgt = e.target;
+    //     evtTgt.parentNode.parentNode.removeChild(evtTgt.parentNode);
+    //   }
+
+    //   clipLabel.onclick = function() {
+    //     const existingName = clipLabel.textContent;
+    //     const newClipName = prompt('Enter a new name for your sound clip?');
+    //     if(newClipName === null) {
+    //       clipLabel.textContent = existingName;
+    //     } else {
+    //       clipLabel.textContent = newClipName;
+    //     }
+    //   }
     }
-
-    // function createDownloadLink() {
-    //   recorder && recorder.exportWAV(function(blob) {
-    //     var url = URL.createObjectURL(blob);
-    //     var li = document.createElement('li');
-    //     var au = document.createElement('audio');
-    //     var hf = document.createElement('a');
-        
-    //     au.controls = true;
-    //     au.src = url;
-    //     hf.href = url;
-    //     hf.download = new Date().toISOString() + '.wav';
-    //     hf.innerHTML = hf.download;
-    //     li.appendChild(au);
-    //     li.appendChild(hf);
-    //     recordingslist.appendChild(li);
-    //   });
-    // }
-
-  //   function createAudioElement(blobUrl) {
-  //     const downloadEl = document.createElement('a');
-  //     downloadEl.style = 'display: block';
-  //     downloadEl.innerHTML = 'download';
-  //     downloadEl.download = 'audio.webm';
-  //     downloadEl.href = blobUrl;
-  //     const audioEl = document.createElement('audio');
-  //     audioEl.controls = true;
-  //     const sourceEl = document.createElement('source');
-  //     sourceEl.src = blobUrl;
-  //     sourceEl.type = 'audio/webm';
-  //     audioEl.appendChild(sourceEl);
-  //     document.body.appendChild(audioEl);
-  //     document.body.appendChild(downloadEl);
-  // }
-
-  //   function createDownloadLink(blob) {
-  //     var url = URL.createObjectURL(blob);
-  //     var au = document.createElement('audio');
-  //     var li = document.createElement('li');
-  //     var link = document.createElement('a');
-  //     //add controls to the <audio> element 
-  //     au.controls = true;
-  //     au.src = url;
-  //     //link the a element to the blob 
-  //     link.href = url;
-  //     link.download = new Date().toISOString() + '.wav';
-  //     link.innerHTML = link.download;
-  //     //add the new audio and a elements to the li element 
-  //     li.appendChild(au);
-  //     li.appendChild(link);
-  //     //add the li element to the ordered list 
-  //     recordingsList.appendChild(li);
-  // }
 
     mediaRecorder.ondataavailable = function(e) {
       chunks.push(e.data);
@@ -268,36 +191,3 @@ window.onresize = function() {
 }
 
 window.onresize();
-
-// $(document).ready(function(){
-//   $('.form_wrapper').on('click', '.upload', function(){
-//      var data = $('.file').val();
-//      $.ajax({
-//       url: "/upload",
-//      type: "get",
-//      data: {text:data},
-//      success: function(response) {
-//        $(".results").html(response.predict);
-//       }
-//    });
-//   });
-// });
-
-// $(document).ready(function() {
-//   $('form').on('submit', function(event) {
-//     $.ajax({
-//        data : {
-//           // Prediction : $('remove_wav').val(),
-//           // YouTube: $('youtube_song_link').val(),
-//           // Guitar : $('guitar_tab_song_link').val(),
-//           FileName : $('filepath').val(),
-//               },
-//           type : 'POST',
-//           url : '/upload'
-//          })
-//      .done(function(data) {
-//        $('results').text(data.output).show();
-//    });
-//    event.preventDefault();
-//    });
-// });
