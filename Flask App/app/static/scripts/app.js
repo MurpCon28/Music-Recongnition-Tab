@@ -6,6 +6,37 @@ const soundClips = document.querySelector('.sound-clips');
 const canvas = document.querySelector('.visualizer');
 const mainSection = document.querySelector('.main-controls');
 
+// var audioChunks;
+// startRecord.onclick = e => {
+//   startRecord.disabled = true;
+//   stopRecord.disabled=false;
+//   // This will prompt for permission if not allowed earlier
+//   navigator.mediaDevices.getUserMedia({audio:true})
+//     .then(stream => {
+//       audioChunks = []; 
+//       rec = new MediaRecorder(stream);
+//       rec.ondataavailable = e => {
+//         audioChunks.push(e.data);
+//         if (rec.state == "inactive"){
+//           let blob = new Blob(audioChunks,{type:'audio/wav'});
+//           recordedAudio.src = URL.createObjectURL(blob);
+//           recordedAudio.controls=true;
+//           recordedAudio.autoplay=true;
+//           audioDownload.href = recordedAudio.src;
+//           audioDownload.download = 'Audio';
+//           audioDownload.innerHTML = 'download';
+//        }
+//       }
+//     rec.start();  
+//     })
+//     .catch(e=>console.log(e));
+// }
+// stopRecord.onclick = e => {
+//   startRecord.disabled = false;
+//   stopRecord.disabled=true;
+//   rec.stop();
+// }
+
 // disable stop button while not recording
 
 stop.disabled = true;
@@ -88,9 +119,12 @@ if (navigator.mediaDevices.getUserMedia) {
       const audioUrl = URL.createObjectURL(blob);
       var data = new FormData()
       data.append('file', blob , 'audio_file.wav')
+      var myHeaders = new Headers(); //new
+      myHeaders.append("Content-Type", "audio/wave"); //new
 
       fetch('http://127.0.0.1:5000/upload_blob', {
           method: 'POST',
+          headers: myHeaders, //new
           body: data
 
       }).then(response => response.json()
