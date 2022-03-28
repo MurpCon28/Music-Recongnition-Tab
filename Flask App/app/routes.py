@@ -47,23 +47,25 @@ def upload_file():
             # })
     return render_template('upload.html')
 
-@app.route('/upload_blob', methods=['POST'])
+@app.route('/upload_blob', methods=['GET', 'POST'])
 def upload_blob():
     print("request")
     if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
+        print("Recieved Audio File")
+        print(request.files)
+        if 'audio_data' not in request.files:
             return jsonify({"error" : "No file part"})
 
-        file = request.files['file']
-        print("file")
-        # If the user does not select a file, the browser submits an
-        # empty file without a filename.
+        file = request.files['audio_data']
+        # with open('audio.wav', 'wb') as audio:
+        #     file.save(audio)
+
         if file.filename == '':
             return jsonify({"error" : "No selected file"})
 
         if file and not allowed_file(file.filename):
             return jsonify({"error" : "No selected file"})
+        print('file uploaded successfully')
 
         print("Upload filename = " + file.filename)
         filename = secure_filename(file.filename)
@@ -74,14 +76,58 @@ def upload_blob():
         # prediction = model.predict()
         return jsonify(prediction)
 
+    #     return render_template('index.html', request="POST")
+    # else:
+    #     return render_template("index.html")
+    # if request.method == 'POST':
+    #     print("Recieved Audio File")
+    #     print(request.files)
+    #     # check if the post request has the file part
+    #     if 'file' not in request.files:
+    #     # if 'file' not in request.files['audio_data']:
+    #         return jsonify({"error" : "No file part"})
+
+    #     file = request.files['file']
+    #     # file = request.files['audio_data']
+    #     print("file")
+    #     # If the user does not select a file, the browser submits an
+    #     # empty file without a filename.
+    #     if file.filename == '':
+    #         return jsonify({"error" : "No selected file"})
+
+    #     if file and not allowed_file(file.filename):
+    #         return jsonify({"error" : "No selected file"})
+
+    #     print("Upload filename = " + file.filename)
+    #     filename = secure_filename(file.filename)
+    #     filepath = os.path.join(UPLOAD_FOLDER, filename)
+    #     file.save(filepath)
+
+    #     prediction = model.predict(filepath)
+    #     # prediction = model.predict()
+    #     return jsonify(prediction)
+
 
 # import song
 
 # load pickle file
 
 # render default webpage
-@app.route('/')
-def hello_world():
+# @app.route('/')
+# def hello_world():
+#     return render_template('index.html')
+
+@app.route("/", methods=['POST', 'GET'])
+def index():
+    # if request.method == "POST":
+    #     f = request.files['audio_data']
+    #     with open('audio.wav', 'wb') as audio:
+    #         f.save(audio)
+    #     print('file uploaded successfully')
+
+    #     return render_template('index.html', request="POST")
+    # else:
+    #     return render_template("index.html")
     return render_template('index.html')
 
 @app.route('/predict')

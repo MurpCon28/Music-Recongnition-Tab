@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Music Recognition Tab</title>
+    <!-- <link href="styles/app.css" rel="stylesheet" type="text/css"> -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/app.css') }}">
+  </head>
+  <body>
+
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a href="/upload">Upload</a>
+    </div>
+
+    <div class="wrapper">
+
+      <header>
+        <h1>Music Recognition Tab 2.1</h1>
+      </header>
+
+      <section class="main-controls">
+        <canvas class="visualizer" height="60px"></canvas>
+        <div id="buttons">
+          <button class="record">Record</button>
+          <button class="stop">Stop</button>
+        </div>
+      </section>
+
+      <section class="sound-clips">
+
+        <!-- https://developers.google.com/web/fundamentals/media/recording-audio
+        https://medium.com/jeremy-gottfrieds-tech-blog/javascript-tutorial-record-audio-and-encode-it-to-mp3-2eedcd466e78
+        https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
+        https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API
+        https://www.codegrepper.com/code-examples/javascript/save+mediastream+to+file
+        https://howtocreateapps.com/fetch-and-display-json-html-javascript/
+        https://stackoverflow.com/questions/883977/display-json-as-html -->
+
+        <!-- https://stackoverflow.com/questions/44864245/return-json-from-flask-to-ajax-via-post
+        https://www.datasciencelearner.com/python-ajax-json-request-form-flask/ -->
+
+        <!-- https://air.ghost.io/recording-to-an-audio-file-using-html5-and-js/
+        https://huynvk.dev/blog/record-and-download-video-in-your-browser-using-javascript
+        https://github.com/mattdiamond/Recorderjs
+        https://itqna.net/questions/20002/create-link-download-audio-recording
+        https://github.com/renilsonmeneguci/Recordmp3js -->
+
+
+        <!-- https://stackoverflow.com/questions/23066488/json-passed-from-python-flask-into-javascript-is-displaying-on-screen
+        https://www.geeksforgeeks.org/how-to-get-json-response-in-ajax/
+        https://towardsdatascience.com/using-python-flask-and-ajax-to-pass-information-between-the-client-and-server-90670c64d688
+        https://code-maven.com/slides/python/flask-and-ajax-jquery
+        https://code-maven.com/slides/python/flask-post-json-data -->
+
+
+      </section>
+
+      <!-- <label></label> -->
+
+    </div>
+
+    <label for="toggle">❔</label>
+    <input type="checkbox" id="toggle">
+    <aside>
+      <h2>Information</h2>
+
+      <p>This application uses the microphone and listens to a song for 20 seconds, the you can download the file and go to the uploads section and upload the file and
+        the application will send the file to the model and search the database for a match.
+      </p>
+
+      <p>Along with the song result, links from YouTube and UltimateGuitar Tab are displayed so the user can learn the song on guitar.</p>
+
+      <p>The application database only contains a few songs to test the prediction, they are Jailbreak by Thin Lizy, City of Blinding Lights by U2, Hey by Pixies,
+        Monkey Man by The Rolling Stones, Hey Jude by The Beatles and Everlong by Foo Fighters. It also has Panam by Van Halen but it can not find a match for it, it stead 
+        says one of the other songs is the match. 
+      </p>
+    </aside>
+    <script type="text/javascript" src="{{url_for('static', filename='scripts/app.js')}}"></script>
+
+  </body>
+</html>
