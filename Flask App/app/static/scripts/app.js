@@ -18,6 +18,41 @@ recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
 
+function pauseRecording(){
+    console.log("pauseButton clicked rec.recording=",rec.recording );
+    if (rec.recording){
+        //pause
+        rec.stop();
+        pauseButton.innerHTML="Resume";
+    }else{
+        //resume
+        rec.record()
+        pauseButton.innerHTML="Pause";
+
+    }
+}
+
+function stopRecording() {
+    console.log("stopButton clicked");
+
+    //disable the stop button, enable the record too allow for new recordings
+    stopButton.disabled = true;
+    recordButton.disabled = false;
+    pauseButton.disabled = true;
+
+    //reset button just in case the recording is stopped while paused
+    pauseButton.innerHTML="Pause";
+
+    //tell the recorder to stop the recording
+    rec.stop();
+
+    //stop microphone access
+    gumStream.getAudioTracks()[0].stop();
+
+    //create the wav blob and pass it on to createDownloadLink
+    rec.exportWAV(createDownloadLink);
+}
+
 function startRecording() {
     console.log("recordButton clicked");
 
@@ -72,7 +107,7 @@ function startRecording() {
 
         console.log("Recording started");
 
-        setTimeout(stopRecording, 20 * 1000);
+        setTimeout(stopRecording, 21 * 1000);
 
     }).catch(function(err) {
         //enable the record button if getUserMedia() fails
@@ -80,41 +115,6 @@ function startRecording() {
         stopButton.disabled = true;
         pauseButton.disabled = true
     });
-}
-
-function pauseRecording(){
-    console.log("pauseButton clicked rec.recording=",rec.recording );
-    if (rec.recording){
-        //pause
-        rec.stop();
-        pauseButton.innerHTML="Resume";
-    }else{
-        //resume
-        rec.record()
-        pauseButton.innerHTML="Pause";
-
-    }
-}
-
-function stopRecording() {
-    console.log("stopButton clicked");
-
-    //disable the stop button, enable the record too allow for new recordings
-    stopButton.disabled = true;
-    recordButton.disabled = false;
-    pauseButton.disabled = true;
-
-    //reset button just in case the recording is stopped while paused
-    pauseButton.innerHTML="Pause";
-
-    //tell the recorder to stop the recording
-    rec.stop();
-
-    //stop microphone access
-    gumStream.getAudioTracks()[0].stop();
-
-    //create the wav blob and pass it on to createDownloadLink
-    rec.exportWAV(createDownloadLink);
 }
 
 function createDownloadLink(blob) {
@@ -167,3 +167,35 @@ function createDownloadLink(blob) {
     //add the li element to the ol
     recordingsList.appendChild(li);
 }
+
+function results() {
+    // const jsonfile = JSON.parse({{jsonfile|tojson}});
+    const jsonfile = JSON.parse('{{jsonfile | tojson}}');
+    console.log(jsonfile);
+    document.getElementById("result").innerHTML = prediction.prediction + " " + prediction.youTube + " " + prediction.guitar;
+    // const prediction = JSON.parse('{{prediction | tojson}}');
+    // console.log(prediction);
+    // document.querySelector("#result").innerHTML = JSON.stringify(jsonfile, null, 2);
+}
+
+    // const jsonfile = JSON.parse({jsonfile,tojson});
+    // console.log(jsonfile);
+    // document.querySelector("result").innerHTML = JSON.stringify(jsonfile, null, 2);
+
+//https://codeutility.org/python-displaying-json-in-the-html-using-flask-and-local-json-file-stack-overflow/
+//https://datatables.net/forums/discussion/50315/how-to-use-flask-framework-to-render-the-html-send-json-data-and-have-ajax-update-table
+
+
+// fetch('/upload_blob').then(function(res) {
+//     return res.json()
+//   }).then(function(json) {
+//     const p = document.querySelector('p')
+//     const a = document.querySelector('a')
+//     // Use the JSON data to populate these elements
+//     p.innerHTML = json.Prediction 
+//     a.innerHTML = json.YouTube
+//     a.innerHTML = json.Guitar
+
+//   }).catch(function(err) {
+//     console.log(err.message)
+//   })

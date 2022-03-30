@@ -212,7 +212,7 @@ def predict(filepath):
     # print("Guitar Tab - " + guitar_tab_song_link)
 
     return {
-        "Prediction" : remove_wav,
-        "YouTube" : youtube_song_link,
-        "Guitar" : guitar_tab_song_link
+        "prediction" : remove_wav,
+        "youTube" : youtube_song_link,
+        "guitar" : guitar_tab_song_link
     }

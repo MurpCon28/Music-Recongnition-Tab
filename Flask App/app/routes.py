@@ -1,6 +1,7 @@
 import os
 from app import app
 from flask import render_template, jsonify, request, redirect, url_for, flash
+import json
 from werkzeug.utils import secure_filename
 
 # from app import imports
@@ -74,7 +75,9 @@ def upload_blob():
 
         prediction = model.predict(filepath)
         # prediction = model.predict()
-        return jsonify(prediction)
+        # return jsonify(prediction)
+        return render_template('index.html', jsonfile=json.dumps(prediction))
+        # return render_template('index.html', prediction=prediction)
 
     #     return render_template('index.html', request="POST")
     # else:
