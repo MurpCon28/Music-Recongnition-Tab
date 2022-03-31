@@ -90,6 +90,8 @@ function startRecording() {
         //update the format 
         document.getElementById("formats").innerHTML="Format: 1 channel pcm @ "+audioContext.sampleRate/1000+"kHz"
 
+        //stream = p.open(format=format,channels=channels,rate=rate,input=True,frames_per_buffer=chunk)
+
         /*  assign to gumStream for later use  */
         gumStream = stream;
 
@@ -172,7 +174,12 @@ function results() {
     // const jsonfile = JSON.parse({{jsonfile|tojson}});
     const jsonfile = JSON.parse('{{jsonfile | tojson}}');
     console.log(jsonfile);
-    document.getElementById("result").innerHTML = prediction.prediction + " " + prediction.youTube + " " + prediction.guitar;
+    // const jsonfile = JSON.parse(jsonfile);
+    // document.getElementById("result").innerHTML = jsonfile.prediction + "<br>" + jsonfile.youTube + "<br>" + jsonfile.guitar;
+    //document.getElementById("result").innerHTML = jsonfile.prediction + " " + jsonfile.youTube + " " + jsonfile.guitar;
+    // var jsonStr = JSON.stringify(jsonfile)
+    // document.getElementById("result").innerHTML = jsonStr;
+    document.querySelector("result").innerHTML = JSON.stringify(jsonfile.prediction, jsonfile.youTube, jsonfile.guitar, null, 3);
     // const prediction = JSON.parse('{{prediction | tojson}}');
     // console.log(prediction);
     // document.querySelector("#result").innerHTML = JSON.stringify(jsonfile, null, 2);
@@ -184,6 +191,7 @@ function results() {
 
 //https://codeutility.org/python-displaying-json-in-the-html-using-flask-and-local-json-file-stack-overflow/
 //https://datatables.net/forums/discussion/50315/how-to-use-flask-framework-to-render-the-html-send-json-data-and-have-ajax-update-table
+//https://joseph-dougal.medium.com/flask-ajax-bootstrap-tables-9036410cbc8
 
 
 // fetch('/upload_blob').then(function(res) {

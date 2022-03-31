@@ -181,14 +181,12 @@ class song:
         return matched_target_zone.index(max(matched_target_zone))
 
 def predict(filepath):
-    chunk = 4096
-    #format = pyaudio.paInt16
-    channels = 1
-    rate = 44100
-    record_seconds = 20
-    NORMALIZE_MINUS_ONE_dB = 10 ** (-1.0 / 20)
-    FRAME_MAX_VALUE = 2 ** 15 - 1
-    # wave_output_file = "output.wav"
+    # chunk = 4096
+    # channels = 1
+    # rate = 44100
+    # record_seconds = 20
+    # NORMALIZE_MINUS_ONE_dB = 10 ** (-1.0 / 20)
+    # FRAME_MAX_VALUE = 2 ** 15 - 1
 
     #read file contents
     #write file contents to output.wav
