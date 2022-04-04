@@ -24,14 +24,17 @@
       <div id="formats"><p><strong>Format:</strong> start recording to see sample rate</p></div>
       <p><strong>Recordings:</strong></p>
       <ol id="recordingsList"></ol>
-      <br>
-      <p><strong>Results:</strong></p>
       <div>
-        <p id="result">{{jsonfile}}</p>
+        <br>
+        <p><strong>Results:</strong></p>
+        <!-- <button onClick='result()'>Show Results</button> -->
+        <!-- {{ song }} -->
+        <p id="result"></p>
       </div>
     </div>
     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.1.0.js" ></script> -->
     <script type="text/javascript" src="{{url_for('static', filename='scripts/app.js')}}"></script>
   </body>
 </html>

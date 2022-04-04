@@ -75,9 +75,10 @@ def upload_blob():
 
         prediction = model.predict(filepath)
         # prediction = model.predict()
-        # return jsonify(prediction)
-        return render_template('index.html', jsonfile=json.dumps(prediction))
-        # return render_template('index.html', prediction=prediction)
+        #return jsonify(prediction)
+        #return render_template('index.html', jsonfile=json.dumps(prediction))
+        return render_template('index.html', song=prediction)
+    #return render_template('index.html')
 
     #     return render_template('index.html', request="POST")
     # else:

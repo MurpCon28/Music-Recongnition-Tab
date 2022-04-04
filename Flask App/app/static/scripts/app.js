@@ -170,20 +170,41 @@ function createDownloadLink(blob) {
     recordingsList.appendChild(li);
 }
 
-function results() {
-    // const jsonfile = JSON.parse({{jsonfile|tojson}});
-    const jsonfile = JSON.parse('{{jsonfile | tojson}}');
-    console.log(jsonfile);
-    // const jsonfile = JSON.parse(jsonfile);
-    // document.getElementById("result").innerHTML = jsonfile.prediction + "<br>" + jsonfile.youTube + "<br>" + jsonfile.guitar;
-    //document.getElementById("result").innerHTML = jsonfile.prediction + " " + jsonfile.youTube + " " + jsonfile.guitar;
-    // var jsonStr = JSON.stringify(jsonfile)
-    // document.getElementById("result").innerHTML = jsonStr;
-    document.querySelector("result").innerHTML = JSON.stringify(jsonfile.prediction, jsonfile.youTube, jsonfile.guitar, null, 3);
-    // const prediction = JSON.parse('{{prediction | tojson}}');
-    // console.log(prediction);
-    // document.querySelector("#result").innerHTML = JSON.stringify(jsonfile, null, 2);
-}
+// function result() {
+//     var xhr = new XMLHttpRequest();
+//     xhr.open("POST", "/upload_blob"); 
+//     xhr.onload = function(event){ 
+//         alert("Success, server responded with: " + event.target.response); // raw response in alert popup
+//         document.getElementById("song").innerHTML = event.target.response; // set content of the div with id "song" to the server response.
+//     }; 
+//     // or onerror, onabort
+//     var formData = new FormData(document.getElementById("result")); 
+//     xhr.send(formData);
+// }
+
+//https://stackoverflow.com/questions/66310336/how-to-print-the-output-of-flask-function-in-a-pop-up-box-in-html
+//https://stackoverflow.com/questions/60226359/how-to-retrieve-data-as-file-object-on-flask-webserver
+
+//https://stackoverflow.com/questions/57443543/display-prediction-on-a-webpage-through-flask
+//https://medium.com/star-gazers/building-churn-predictor-with-python-flask-html-and-css-fbab760e8441
+//https://towardsdatascience.com/model-deployment-using-flask-c5dcbb6499c9
+//https://towardsdatascience.com/building-a-machine-learning-web-application-using-flask-29fa9ea11dac
+//https://iq.opengenus.org/web-app-ml-model-using-flask/
+
+// function results() {
+//     // const jsonfile = JSON.parse({{jsonfile|tojson}});
+//     const jsonfile = JSON.parse('{{jsonfile | tojson}}');
+//     console.log(jsonfile);
+//     // const jsonfile = JSON.parse(jsonfile);
+//     // document.getElementById("result").innerHTML = jsonfile.prediction + "<br>" + jsonfile.youTube + "<br>" + jsonfile.guitar;
+//     //document.getElementById("result").innerHTML = jsonfile.prediction + " " + jsonfile.youTube + " " + jsonfile.guitar;
+//     // var jsonStr = JSON.stringify(jsonfile)
+//     // document.getElementById("result").innerHTML = jsonStr;
+//     document.querySelector("result").innerHTML = JSON.stringify(jsonfile.prediction, jsonfile.youTube, jsonfile.guitar, null, 3);
+//     // const prediction = JSON.parse('{{prediction | tojson}}');
+//     // console.log(prediction);
+//     // document.querySelector("#result").innerHTML = JSON.stringify(jsonfile, null, 2);
+// }
 
     // const jsonfile = JSON.parse({jsonfile,tojson});
     // console.log(jsonfile);
