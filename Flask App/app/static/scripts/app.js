@@ -119,6 +119,8 @@ function startRecording() {
     });
 }
 
+//stop.onclick = stopRecording;
+
 function createDownloadLink(blob) {
 
     var url = URL.createObjectURL(blob);
@@ -156,6 +158,13 @@ function createDownloadLink(blob) {
           xhr.onload=function(e) {
               if(this.readyState === 4) {
                   console.log("Server returned: ",e.target.responseText);
+                  //const jsonfile = JSON.stringify('{{jsonfile | tojson}}');
+                  //const jsonfile = JSON.parse('{{jsonfile | tojson}}');
+                  //const jsonfile = JSON.parse(JSON.stringify(jsonfile));
+                  //document.querySelector("#result").innerHTML = JSON.stringify(jsonfile, null, 2)
+                  //document.getElementById("result").innerHTML = jsonfile;
+                  //document.getElementById("result").innerHTML = jsonfile.remove_wav + "<br>" + jsonfile.youtube_song_link + "<br>" + jsonfile.guitar_tab_song_link;
+                  document.getElementById("result").innerHTML = e.target.response;
               }
           };
           var fd=new FormData();
