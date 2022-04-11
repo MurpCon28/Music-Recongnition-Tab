@@ -16,12 +16,13 @@ from struct import pack
 
 #%matplotlib tk
 
+#pickle files containing the songID and audio fingerprints are loaded
 with open("app/hashtable.pkl", "rb") as input_file:
     hashtable = pickle.load( input_file)
 with open("app/songid.pkl", "rb") as input_file:
     song_dict = pickle.load(input_file)
 
-file = open('app/songs.txt','r')#list of song files ----> use      ls >allsongs
+file = open('app/songs.txt','r')#list of songs to use
 allsongs = file.readlines()
 allsongs = [a[:-1] for a in allsongs]
 numOfSongs = len(allsongs)
@@ -181,6 +182,7 @@ class song:
         return matched_target_zone.index(max(matched_target_zone))
 
 def predict(filepath):
+    #This is used for the format of recording in Jupyter Notebook
     # chunk = 4096
     # channels = 1
     # rate = 44100
@@ -197,6 +199,7 @@ def predict(filepath):
 
     #print('Predicted Song {}'.format(allsongs[idx]))
 
+    #The .wav is removed from the song in the songs.txt file, and spaces are replaced with %20 so the repsonse can be used as a link
     remove_wav = (allsongs[idx]).replace('.wav', '')
     predicted_song = remove_wav.replace(' ', '%20')
     # print(predicted_song)
@@ -210,7 +213,7 @@ def predict(filepath):
     # print("Guitar Tab - " + guitar_tab_song_link)
 
     return {
-        "prediction" : remove_wav,
-        "youTube" : youtube_song_link,
-        "guitar" : guitar_tab_song_link
+        "Song Prediction" : remove_wav,
+        "YouTube Link" : youtube_song_link,
+        "UltimateGuitar Link" : guitar_tab_song_link
     }

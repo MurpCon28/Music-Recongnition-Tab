@@ -28,13 +28,32 @@
         <br>
         <p><strong>Results:</strong></p>
         <!-- <button onClick='result()'>Show Results</button> -->
-        {{ song }}
-        <p id="result"></p>
+        <p id="result">{{ prediction }}</p>
       </div>
     </div>
-    <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+
+    <label for="toggle">❔</label>
+    <input type="checkbox" id="toggle">
+    <aside>
+      <h2>Information</h2>
+
+      <p>This application uses the microphone and listens to a song for 20 seconds, then you can click the upload link to send the audio clip to the server
+        to make a prediction. The application will search the database for a match.
+      </p>
+
+      <p>Along with the song result, links from YouTube and UltimateGuitar Tab are displayed so the user can learn the song on guitar.</p>
+
+      <p>The application database only contains a few songs to test the prediction, they are Jailbreak by Thin Lizzy, City of Blinding Lights by U2, Hey by Pixies,
+        Monkey Man by The Rolling Stones, Hey Jude by The Beatles and Everlong by Foo Fighters. 
+      </p>
+
+      <p>Due to a problem with the recorder format Jailbreak by Thin Lizzy is the only response returned, even if there is no music playing, because
+        of this the user has to go to the upload tab in the navbar and upload the audio clip from the python recorder to get a prediction.
+        The python audio clips are found in the /uploads folder in the Flask App, the files are named after the band.
+      </p>
+    </aside>
+    <!-- scripts for audio recorder and display results -->
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.1.0.js" ></script> -->
     <script type="text/javascript" src="{{url_for('static', filename='scripts/app.js')}}"></script>
   </body>
 </html>
