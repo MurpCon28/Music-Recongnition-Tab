@@ -46,6 +46,9 @@ function stopRecording() {
     //Recorder is told to stop
     rec.stop();
 
+    //When stop button is pressed the limit timer is cleared
+    clearTimeout(recordTimeout);
+
     //Microphone access is stopped
     gumStream.getAudioTracks()[0].stop();
 
@@ -96,7 +99,7 @@ function startRecording() {
         console.log("Recording started");
 
         //Recording is set to stop after 20 seconds
-        setTimeout(stopRecording, 21 * 1000);
+        recordTimeout = setTimeout(stopRecording, 21 * 1000);
 
     }).catch(function(err) {
         //If getUserMedia() fails the record button is enabled
