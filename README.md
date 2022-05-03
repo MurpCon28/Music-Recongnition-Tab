@@ -1,6 +1,6 @@
 # Music-Recongnition-Tab
 
-##Setup
+## Setup
 First make sure your device has the following Python libraries:
 *import wave
 *import numpy as np
@@ -28,7 +28,7 @@ Open the Flask App fodler in a coding enviroment like VSCode, using the terminal
 *Then run *python -m pip install flask* if Flask in not installed on your device
 *Last run *python -m flask run* or used *flask run*
 
-##Resources
+## Resources
 https://github.com/KavyaVarma/Music-Recognition
 https://stackoverflow.com/questions/66310336/how-to-print-the-output-of-flask-function-in-a-pop-up-box-in-html
 https://stackoverflow.com/questions/60226359/how-to-retrieve-data-as-file-object-on-flask-webserver
