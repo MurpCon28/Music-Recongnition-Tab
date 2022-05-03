@@ -2,19 +2,19 @@
 
 ## Setup
 First make sure your device has the following Python libraries:
-*import wave
-*import numpy as np
-*import matplotlib.pyplot as plt
-*import matplotlib.mlab as mlab
-*from scipy import signal
-*import seaborn as sns
-*from scipy.io import wavfile
-*import pylab
-*import matplotlib.mlab as ml
-*from scipy.fftpack import fft
-*import pickle
-*import os
-*%matplotlib tk
+* import wave
+* import numpy as np
+* import matplotlib.pyplot as plt
+* import matplotlib.mlab as mlab
+* from scipy import signal
+* import seaborn as sns
+* from scipy.io import wavfile
+* import pylab
+* import matplotlib.mlab as ml
+* from scipy.fftpack import fft
+* import pickle
+* import os
+* %matplotlib tk
 
 After your device has these libraries, download both the **hashtable and songid pickle files**, next create a folder called **Song_Wav** and add 6 wav files of songs you wish to identify.
 Next create a text file call **songs** and add one per line the name of the wav files, for example *Title - Artist.wav*, with the last song added to the text file leave a space after the word wav.
@@ -22,11 +22,11 @@ After these files and folders have been created use the code from **server_side.
 
 Next download the **Flask App**, replace the **hashtable and songid pickle files and songs.txt file** from the app folder in Flask with the newly made ones.
 Open the Flask App fodler in a coding enviroment like VSCode, using the terminal do the following:
-*Type *py -3 -m venv .venv*
-*.venv\scripts\activate
-*Open command palette and choose the most upto date Python Interpreter with .venv in it
-*Then run *python -m pip install flask* if Flask in not installed on your device
-*Last run *python -m flask run* or used *flask run*
+* Type *py -3 -m venv .venv*
+* .venv\scripts\activate
+* Open command palette and choose the most upto date Python Interpreter with .venv in it
+* Then run *python -m pip install flask* if Flask in not installed on your device
+* Last run *python -m flask run* or used *flask run*
 
 ## Resources
 https://github.com/KavyaVarma/Music-Recognition
