@@ -29,14 +29,14 @@ Open the Flask App fodler in a coding enviroment like VSCode, using the terminal
 * Last run *python -m flask run* or used *flask run*
 
 ## Resources
-https://github.com/KavyaVarma/Music-Recognition
-https://stackoverflow.com/questions/66310336/how-to-print-the-output-of-flask-function-in-a-pop-up-box-in-html
-https://stackoverflow.com/questions/60226359/how-to-retrieve-data-as-file-object-on-flask-webserver
-https://stackoverflow.com/questions/57443543/display-prediction-on-a-webpage-through-flask
-https://medium.com/star-gazers/building-churn-predictor-with-python-flask-html-and-css-fbab760e8441
-https://towardsdatascience.com/model-deployment-using-flask-c5dcbb6499c9
-https://towardsdatascience.com/building-a-machine-learning-web-application-using-flask-29fa9ea11dac
-https://iq.opengenus.org/web-app-ml-model-using-flask/
-https://codeutility.org/python-displaying-json-in-the-html-using-flask-and-local-json-file-stack-overflow/
-https://datatables.net/forums/discussion/50315/how-to-use-flask-framework-to-render-the-html-send-json-data-and-have-ajax-update-table
-https://joseph-dougal.medium.com/flask-ajax-bootstrap-tables-9036410cbc8
+* https://github.com/KavyaVarma/Music-Recognition
+* https://stackoverflow.com/questions/66310336/how-to-print-the-output-of-flask-function-in-a-pop-up-box-in-html
+* https://stackoverflow.com/questions/60226359/how-to-retrieve-data-as-file-object-on-flask-webserver
+* https://stackoverflow.com/questions/57443543/display-prediction-on-a-webpage-through-flask
+* https://medium.com/star-gazers/building-churn-predictor-with-python-flask-html-and-css-fbab760e8441
+* https://towardsdatascience.com/model-deployment-using-flask-c5dcbb6499c9
+* https://towardsdatascience.com/building-a-machine-learning-web-application-using-flask-29fa9ea11dac
+* https://iq.opengenus.org/web-app-ml-model-using-flask/
+* https://codeutility.org/python-displaying-json-in-the-html-using-flask-and-local-json-file-stack-overflow/
+* https://datatables.net/forums/discussion/50315/how-to-use-flask-framework-to-render-the-html-send-json-data-and-have-ajax-update-table
+* https://joseph-dougal.medium.com/flask-ajax-bootstrap-tables-9036410cbc8
