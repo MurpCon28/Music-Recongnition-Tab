@@ -40,3 +40,14 @@ Open the Flask App fodler in a coding enviroment like VSCode, using the terminal
 * https://codeutility.org/python-displaying-json-in-the-html-using-flask-and-local-json-file-stack-overflow/
 * https://datatables.net/forums/discussion/50315/how-to-use-flask-framework-to-render-the-html-send-json-data-and-have-ajax-update-table
 * https://joseph-dougal.medium.com/flask-ajax-bootstrap-tables-9036410cbc8
+* https://developers.google.com/web/fundamentals/media/recording-audio
+* https://medium.com/jeremy-gottfrieds-tech-blog/javascript-tutorial-record-audio-and-encode-it-to-mp3-2eedcd466e78
+* https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
+* https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API
+* https://www.codegrepper.com/code-examples/javascript/save+mediastream+to+file
+* https://howtocreateapps.com/fetch-and-display-json-html-javascript/
+* https://stackoverflow.com/questions/883977/display-json-as-html
+* https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
+* https://javascript.tutorialink.com/send-wav-file-from-js-to-flask/
+* https://blog.addpipe.com/using-recorder-js-to-capture-wav-audio-in-your-html5-web-site/
+* 
