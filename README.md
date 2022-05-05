@@ -29,7 +29,7 @@ Open the Flask App fodler in a coding enviroment like VSCode, using the terminal
 * Last run *python -m flask run* or used *flask run*
 
 ## Resources
-* https://github.com/KavyaVarma/Music-Recognition
+* Most Helpful - https://github.com/KavyaVarma/Music-Recognition
 * https://stackoverflow.com/questions/66310336/how-to-print-the-output-of-flask-function-in-a-pop-up-box-in-html
 * https://stackoverflow.com/questions/60226359/how-to-retrieve-data-as-file-object-on-flask-webserver
 * https://stackoverflow.com/questions/57443543/display-prediction-on-a-webpage-through-flask
@@ -49,4 +49,4 @@ Open the Flask App fodler in a coding enviroment like VSCode, using the terminal
 * https://stackoverflow.com/questions/883977/display-json-as-html
 * https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_Recording_API/Using_the_MediaStream_Recording_API
 * https://javascript.tutorialink.com/send-wav-file-from-js-to-flask/
-* https://blog.addpipe.com/using-recorder-js-to-capture-wav-audio-in-your-html5-web-site/
+* Most Helpful - https://blog.addpipe.com/using-recorder-js-to-capture-wav-audio-in-your-html5-web-site/
